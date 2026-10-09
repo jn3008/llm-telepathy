@@ -1,0 +1,27 @@
+model:
+  name: HuggingFaceTB/SmolLM2-135M-Instruct
+  revision: 12fd25f77366fa6b3b4b768ec3050bf629380bac
+  device: auto
+  max_new_tokens: 8
+
+dataset:
+  seed: 20261003
+  tasks_per_family: 2
+  public_response: "I'm going to choose A."
+  splits:
+    train: [public_01, public_02, public_03]
+    validation: [public_04, public_05, public_06]
+    test: [public_07, public_08, public_09]
+
+probe:
+  c_values: [0.1, 1.0]
+  bootstrap_samples: 300
+  seed: 17
+
+paths:
+  examples: data/smoke_examples.jsonl
+  activations: artifacts/smoke_activations.npz
+  run_metadata: artifacts/smoke_run_metadata.json
+  metrics: artifacts/smoke_metrics.json
+  plot: artifacts/smoke_layer_accuracy.png
+  viewer: artifacts/smoke_viewer.html

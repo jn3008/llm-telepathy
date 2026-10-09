@@ -1,0 +1,29 @@
+model:
+  name: HuggingFaceTB/SmolLM2-135M-Instruct
+  revision: 12fd25f77366fa6b3b4b768ec3050bf629380bac
+  device: auto # auto, cpu, mps, cuda
+  max_new_tokens: 8
+
+dataset:
+  seed: 20261003
+  tasks_per_family: 8
+  public_response: "I'm going to choose A."
+  # Keep each family wholly inside one split. Use a bigger set of template
+  # families for serious experiments; these small splits are for a pipeline demo.
+  splits:
+    train: [public_01, public_02, public_03]
+    validation: [public_04, public_05, public_06]
+    test: [public_07, public_08, public_09]
+
+probe:
+  c_values: [0.01, 0.1, 1.0, 10.0]
+  bootstrap_samples: 2000
+  seed: 17
+
+paths:
+  examples: data/examples.jsonl
+  activations: artifacts/activations.npz
+  run_metadata: artifacts/run_metadata.json
+  metrics: artifacts/metrics.json
+  plot: artifacts/layer_accuracy.png
+  viewer: artifacts/viewer.html
